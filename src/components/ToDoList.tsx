@@ -1,24 +1,39 @@
 import {useRecoilValue} from 'recoil';
 import CreateToDo from './CreateToDo';
 import ToDo from './ToDo';
-import {toDoState} from '../atoms';
+import {toDoSelector, toDoState} from '../atoms';
 
 interface IForm {
 	toDo: string;
 }
 
 function ToDoList() {
-	const toDos = useRecoilValue(toDoState);
+	const [toDo, doing, done] = useRecoilValue(toDoSelector);
+
 	return (
 		<div>
-			<h1>To Dos</h1>
-			<hr />
 			<CreateToDo />
+			<h1>To Dos</h1>
 			<ul>
-				{toDos.map((toDo) => (
+				{toDo.map((toDo) => (
 					<ToDo key={toDo.id} {...toDo} />
 				))}
 			</ul>
+			<hr />
+			<h1>Doing</h1>
+			<ul>
+				{doing.map((toDo) => (
+					<ToDo key={toDo.id} {...toDo} />
+				))}
+			</ul>
+			<hr />
+			<h1>Done</h1>
+			<ul>
+				{done.map((toDo) => (
+					<ToDo key={toDo.id} {...toDo} />
+				))}
+			</ul>
+			<hr />
 		</div>
 	);
 }
