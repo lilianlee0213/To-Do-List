@@ -4,7 +4,6 @@ import {createGlobalStyle} from 'styled-components';
 import ToDoList from './components/ToDoList';
 
 const GlobalStyle = createGlobalStyle`
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600&display=swap');
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -56,14 +55,25 @@ table {
 	box-sizing: border-box;
 }
 body{
-	font-family: 'Source Sans Pro', sans-serif;
-	background-color: ${(props) => props.theme.bgColor};
+  background-color: ${(props) => props.theme.bgColor};
 	color:${(props) => props.theme.textColor};
 }
 a{
 	text-decoration: none;
   color:inherit;
 }
+select, input, button{
+  font-family: 'Allerta', sans-serif;
+  padding: 10px;
+  border: 2px solid ${(props) => props.theme.textColor};
+  font-size: 14px;
+  text-transform: uppercase;
+
+  &:focus{
+    outline: none;
+  }
+}
+
 `;
 function App() {
 	return (
