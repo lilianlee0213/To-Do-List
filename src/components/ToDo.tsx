@@ -1,5 +1,18 @@
 import {useSetRecoilState} from 'recoil';
 import {Categories, IToDo, toDoState} from '../atoms';
+import styled from 'styled-components';
+
+const List = styled.li`
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 10px;
+	list-style: none;
+`;
+const Buttons = styled.div`
+	display: flex;
+	gap: 10px;
+`;
 function ToDo({text, category, id}: IToDo) {
 	const setToDos = useSetRecoilState(toDoState);
 	const onClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -17,24 +30,26 @@ function ToDo({text, category, id}: IToDo) {
 		});
 	};
 	return (
-		<li>
+		<List>
 			<span>{text}</span>
-			{category !== Categories.DOING && (
-				<button name={Categories.DOING} onClick={onClick}>
-					Doing
-				</button>
-			)}
-			{category !== Categories.TO_DO && (
-				<button name={Categories.TO_DO} onClick={onClick}>
-					To Do
-				</button>
-			)}
-			{category !== Categories.DONE && (
-				<button name={Categories.DONE} onClick={onClick}>
-					Done
-				</button>
-			)}
-		</li>
+			<Buttons>
+				{category !== Categories.IN_PROGRESS && (
+					<button name={Categories.IN_PROGRESS} onClick={onClick}>
+						In Progress
+					</button>
+				)}
+				{category !== Categories.TO_DO && (
+					<button name={Categories.TO_DO} onClick={onClick}>
+						To Do
+					</button>
+				)}
+				{category !== Categories.COMPLETED && (
+					<button name={Categories.COMPLETED} onClick={onClick}>
+						Completed
+					</button>
+				)}
+			</Buttons>
+		</List>
 	);
 }
 export default ToDo;

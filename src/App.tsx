@@ -62,12 +62,16 @@ a{
 	text-decoration: none;
   color:inherit;
 }
+button{
+  cursor: pointer;
+}
+
 select, input, button{
   font-family: 'Allerta', sans-serif;
   padding: 10px;
   border: 2px solid ${(props) => props.theme.textColor};
   font-size: 14px;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
 
   &:focus{
     outline: none;
